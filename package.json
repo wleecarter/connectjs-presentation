@@ -1,0 +1,26 @@
+{
+  "name": "connectjs-presentation",
+  "version": "1.0.0",
+  "description": "Unit Testing Node.js Presentation for Connect-JS Conference 10.16.15",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha tests/**/**.spec.js"
+  },
+  "author": "Lee Carter",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "gulp-mocha": "^2.1.3",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1"
+  },
+  "dependencies": {
+    "async": "^1.4.2",
+    "express": "^4.13.3",
+    "mongoose": "^4.1.10"
+  }
+}
