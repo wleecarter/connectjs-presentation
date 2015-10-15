@@ -16,22 +16,22 @@ describe('findById() - 02a', function() {
           id:123
         }
       };
-      var superhero = {
+      var stubSuperhero = {
         _id:123,
         name:'Dr. Strange'
       };
 
       sinon.stub(mongoose.Model, 'findById')
         .withArgs(req.params.id)
-        .yields(null, superhero);
+        .yields(null, stubSuperhero);
 
       // act
       controller.findById(req, res);
 
-      mongoose.Model.findById.restore();
-
       // assert
       res.statusCode.should.eql(200);
+
+      mongoose.Model.findById.restore();
     });
     it('the response should contain the matching record');
   });

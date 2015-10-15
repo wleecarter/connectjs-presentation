@@ -14,7 +14,7 @@ describe('exec() - with chained functions', function() {
         id:123
       }
     };
-    var superhero = {
+    var stubSuperhero = {
       _id:123,
       name:'Dr. Strange'
     };
@@ -22,10 +22,10 @@ describe('exec() - with chained functions', function() {
 
       //sinon.stub(mongoose.Model, 'findById')
       //  .withArgs(req.params.id)
-      //  .yields(null, superhero);
+      //  .yields(null, stubSuperhero);
 
       sinon.stub(mongoose.Query.prototype, 'exec')
-        .yields(null, superhero);
+        .yields(null, stubSuperhero);
 
       controller.findById(req, res);
     });
@@ -37,7 +37,7 @@ describe('exec() - with chained functions', function() {
       res.statusCode.should.eql(200);
     });
     it('the response should contain the matching record', function() {
-      res.body.should.eql(superhero);
+      res.body.should.eql(stubSuperhero);
     });
   });
 });

@@ -6,17 +6,11 @@ var should = require('chai').should();
 var sinon = require('sinon');
 
 var controller = require('../app/02-mongoose-findById');
-//var res = require('./fake-response');
 
 describe('findById() - 02c', function() {
-  context.only('when a matching record is found', function() {
-    //var req = {
-    //  params: {
-    //    id:123
-    //  }
-    //};
+  context('when a matching record is found', function() {
     var req, res;
-    var superhero = {
+    var stubSuperhero = {
       _id:123,
       name:'Dr. Strange'
     };
@@ -25,7 +19,7 @@ describe('findById() - 02c', function() {
       res = httpMocks.createResponse();
       sinon.stub(mongoose.Model, 'findById')
         .withArgs(req.params.id)
-        .yields(null, superhero);
+        .yields(null, stubSuperhero);
 
       controller.findById(req, res);
     });
@@ -37,9 +31,9 @@ describe('findById() - 02c', function() {
     });
     it('the response should contain the matching record', function() {
       var body = JSON.parse( res._getData() );
-      body.name.should.eql(superhero.name);
-      body._id.should.eql(superhero._id);
-      body.should.eql(superhero);
+      body.name.should.eql(stubSuperhero.name);
+      body._id.should.eql(stubSuperhero._id);
+      body.should.eql(stubSuperhero);
     });
   });
 });

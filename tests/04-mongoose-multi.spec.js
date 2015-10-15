@@ -12,13 +12,13 @@ var args = {
   defenderId:456
 };
 var attackerStartingHealth = 100;
-var attacker = {
+var stubAttacker = {
   name: 'Dr. Strange',
   attack: 10,
   health: attackerStartingHealth
 };
 var defenderStartingHealth = 50;
-var defender = {
+var stubDefender = {
   name: 'Mephisto',
   counterAttack: 25,
   health: defenderStartingHealth
@@ -29,20 +29,20 @@ describe('battle()', function() {
   beforeEach(function(done) {
 
     // --------------- arrange ---------------
-    attacker.health = attackerStartingHealth;
-    defender.health = defenderStartingHealth;
+    stubAttacker.health = attackerStartingHealth;
+    stubDefender.health = defenderStartingHealth;
 
     sinon.stub(mongoose.Model, 'findById')
       .withArgs(args.attackerId)
-      .yields(null, attacker)
+      .yields(null, stubAttacker)
       .withArgs(args.defenderId)
-      .yields(null, defender);
+      .yields(null, stubDefender);
 
     //sinon.stub(mongoose.Model, 'findById')
     //  .onFirstCall()
-    //  .yields(null, attacker)
+    //  .yields(null, stubAttacker)
     //  .onSecondCall()
-    //  .yields(null, defender);
+    //  .yields(null, stubDefender);
 
     // --------------- act ---------------
     service.battle(args, function(err, outcome) {
@@ -56,13 +56,13 @@ describe('battle()', function() {
   it('the defender\'s remaining health should equal their starting health ' +
     'minus the attacker\'s attack strength', function() {
     actual.defender.health.should.eql(
-      defenderStartingHealth - attacker.attack
+      defenderStartingHealth - stubAttacker.attack
     );
   });
   it('the attackers\'s remaining health should equal their starting health ' +
     'minus the attacker\'s counter-attack strength', function() {
     actual.attacker.health.should.eql(
-      attackerStartingHealth - defender.counterAttack
+      attackerStartingHealth - stubDefender.counterAttack
     );
   });
 });

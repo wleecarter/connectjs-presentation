@@ -7,21 +7,21 @@ var sinon = require('sinon');
 var controller = require('../app/02-mongoose-findById');
 var res = require('./fake-response');
 
-describe.skip('findById() - 02b', function() {
-  context.only('when a matching record is found', function() {
+describe('findById() - 02b', function() {
+  context('when a matching record is found', function() {
     var req = {
       params: {
         id:123
       }
     };
-    var superhero = {
+    var stubSuperhero = {
       _id:123,
       name:'Dr. Strange'
     };
     beforeEach(function() {
       sinon.stub(mongoose.Model, 'findById')
         .withArgs(req.params.id)
-        .yields(null, superhero);
+        .yields(null, stubSuperhero);
 
       controller.findById(req, res);
     });
@@ -32,7 +32,7 @@ describe.skip('findById() - 02b', function() {
       res.statusCode.should.eql(200);
     });
     it('the response should contain the matching record', function() {
-      res.body.should.eql(superhero);
+      res.body.should.eql(stubSuperhero);
     });
   });
 });
