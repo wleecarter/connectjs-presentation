@@ -7,8 +7,11 @@ module.exports.findById = findById;
 function findById(req, res) {
   Superhero.findById(req.params.id, function(err, superhero) {
     if(err) {
-      return res.status(500).json({message:'an unexpected error has occurred'});
+      return res.status(500).json(
+        {message:'an unexpected error has occurred'}
+      );
     }
     res.status(200).json(superhero);
+    //res.end();
   });
 }
