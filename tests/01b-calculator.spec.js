@@ -16,12 +16,13 @@ describe('multiply()', function() {
     // act
     var actual = calculator.multiply(2,2);
 
-    // DANGER AHEAD - BAD CODE:
     // assert
+    // DANGER AHEAD - BAD CODE:
     assert(actual, expected);
 
-    // expect(actual).to.eql(expected);
-    // actual.should.eql(expected);
+    //assert.strictEqual(actual, expected);
+    //expect(actual).to.equal(expected);
+    //actual.should.equal(expected);
   });
 
 });

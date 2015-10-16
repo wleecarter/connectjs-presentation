@@ -34,6 +34,12 @@ describe('findById() - 02b', function() {
     it('the response should contain the matching record', function() {
       res.body.should.eql(stubSuperhero);
     });
+    //it.only('the response status code should be 200', function() {
+    //  res.statusCode.should.eql(200);
+    //});
+    //it.skip('the response should contain the matching record', function() {
+    //  res.body.should.eql(stubSuperhero);
+    //});
   });
 });
 

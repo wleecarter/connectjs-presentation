@@ -32,17 +32,17 @@ describe('battle()', function() {
     stubAttacker.health = attackerStartingHealth;
     stubDefender.health = defenderStartingHealth;
 
-    sinon.stub(mongoose.Model, 'findById')
-      .withArgs(args.attackerId)
-      .yields(null, stubAttacker)
-      .withArgs(args.defenderId)
-      .yields(null, stubDefender);
-
     //sinon.stub(mongoose.Model, 'findById')
-    //  .onFirstCall()
+    //  .withArgs(args.attackerId)
     //  .yields(null, stubAttacker)
-    //  .onSecondCall()
+    //  .withArgs(args.defenderId)
     //  .yields(null, stubDefender);
+
+    sinon.stub(mongoose.Model, 'findById')
+      .onFirstCall()
+      .yields(null, stubAttacker)
+      .onSecondCall()
+      .yields(null, stubDefender);
 
     // --------------- act ---------------
     service.battle(args, function(err, outcome) {

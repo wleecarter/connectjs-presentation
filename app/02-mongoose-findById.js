@@ -8,10 +8,9 @@ function findById(req, res) {
   Superhero.findById(req.params.id, function(err, superhero) {
     if(err) {
       return res.status(500).json(
-        {message:'an unexpected error has occurred'}
+        {message:'something has gone horribly wrong'}
       );
     }
     res.status(200).json(superhero);
-    //res.end();
   });
 }
